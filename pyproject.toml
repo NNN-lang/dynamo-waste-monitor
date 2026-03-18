@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "dynamo-waste-monitor"
+version = "0.1.0"
+description = "Real-time idle GPU detection and cost analysis for NVIDIA Dynamo 1.0"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+keywords = ["nvidia", "gpu", "dynamo", "monitoring", "inference", "cost"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: System :: Monitoring",
+]
+dependencies = [
+    "pyyaml>=6.0",
+    "rich>=13.0.0",
+]
+
+[project.optional-dependencies]
+gpu = [
+    "nvidia-ml-py>=12.535.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+dynamo-waste-monitor = "dynamo_waste_monitor:main"
+
+[project.urls]
+Homepage = "https://github.com/NNN-lang/dynamo-waste-monitor"
+Issues   = "https://github.com/NNN-lang/dynamo-waste-monitor/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["dynamo_waste_monitor*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts   = "-v --tb=short"

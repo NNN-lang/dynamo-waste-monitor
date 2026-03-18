@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+
+  # ── Simulation mode (no GPU required) ─────────────────────────────────────
+  monitor-sim:
+    build: .
+    container_name: dynamo-waste-monitor-sim
+    command: ["--simulate", "--dashboard", "--interval", "5"]
+    stdin_open: true
+    tty: true
+
+  # ── Real GPU mode ──────────────────────────────────────────────────────────
+  monitor-gpu:
+    build: .
+    container_name: dynamo-waste-monitor-gpu
+    command: ["--dashboard", "--interval", "5"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    network_mode: host   # access Dynamo at localhost:8080
+
+  # ── Connected to Dynamo 1.0 ────────────────────────────────────────────────
+  monitor-dynamo:
+    build: .
+    container_name: dynamo-waste-monitor-dynamo
+    command:
+      - "--dynamo-endpoint"
+      - "http://dynamo:8080"
+      - "--dashboard"
+      - "--interval"
+      - "10"
+      - "--output-yaml"
+      - "/output/rebalance.yaml"
+    volumes:
+      - ./output:/output
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
