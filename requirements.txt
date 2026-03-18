@@ -1,0 +1,12 @@
+# NVIDIA Dynamo GPU Waste Monitor — dependencies
+# Install: pip install -r requirements.txt
+
+# GPU monitoring (requires NVIDIA GPU + drivers)
+# Falls back to simulation mode if not available
+nvidia-ml-py>=12.535.0
+
+# YAML output for Dynamo 1.0 rebalancing schedules
+pyyaml>=6.0
+
+# Terminal dashboard (optional but recommended)
+rich>=13.0.0
