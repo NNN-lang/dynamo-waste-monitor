@@ -1,0 +1,38 @@
+api_version: dynamo/v1
+kind: RebalanceSchedule
+metadata:
+  generated_at: '2026-03-18T09:35:22.546052'
+  cluster_utilisation_pct: 41.2
+  idle_gpus: 4
+  waste_per_hour_usd: 159.2
+  waste_per_month_usd: 114624.0
+spec:
+  commands:
+  - action: migrate_worker
+    worker_id: worker-llama405b-01
+    from_gpu: 0
+    to_gpu: 4
+    model: llama3-405b
+    priority: normal
+    estimated_gain: 39.80_usd_per_hour
+  - action: migrate_worker
+    worker_id: worker-llama405b-02
+    from_gpu: 1
+    to_gpu: 5
+    model: llama3-405b
+    priority: normal
+    estimated_gain: 39.80_usd_per_hour
+  - action: migrate_worker
+    worker_id: worker-llama70b-01
+    from_gpu: 2
+    to_gpu: 6
+    model: llama3-70b
+    priority: normal
+    estimated_gain: 39.80_usd_per_hour
+  - action: migrate_worker
+    worker_id: worker-llama70b-02
+    from_gpu: 3
+    to_gpu: 7
+    model: llama3-70b
+    priority: normal
+    estimated_gain: 39.80_usd_per_hour
