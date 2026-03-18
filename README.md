@@ -88,5 +88,5 @@ NVIDIA Dynamo 1.0 (optional — standalone mode works without)
 
 
 License
-Apache License 2.0 — see LICENSE
-Patent pending. For commercial licensing open an issue.
+Apache License 2.0 — see [LICENSE](LICENSE)
+Patent pending. For commercial licensing open an issue. open an [issue](https://github.com/NNN-lang/dynamo-waste-monitor/issues)
