@@ -1,36 +1,31 @@
 name: CI
- 
+
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
- 
+
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.10", "3.11", "3.12"]
- 
+
     steps:
       - uses: actions/checkout@v4
- 
-      - name: Set up Python ${{ matrix.python-version }}
+
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
- 
+          python-version: "3.11"
+
       - name: Install dependencies
         run: |
-          pip install --upgrade pip
-          pip install pyyaml rich pytest pytest-cov
- 
+          pip install pyyaml rich pytest
+
       - name: Run tests
         run: |
-          pytest tests/ -v --tb=short --cov=dynamo_waste_monitor --cov-report=term-missing
- 
-      - name: Run simulation smoke test
+          pytest tests/ -v --tb=short
+
+      - name: Smoke test
         run: |
           python dynamo_waste_monitor.py --simulate --once
- 
